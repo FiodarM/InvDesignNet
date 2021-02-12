@@ -31,7 +31,7 @@ def save_samples(fname, samples):
         np.savez(fname, **samples)
     except KeyboardInterrupt:
         pass
-    print("Saved {0} samples to {1}. Total samples in {1}: {2}"
+    print("Saved {0} samples to {1}. The dataset contains {2} samples."
           .format(n_samples, fname, samples['R'].shape[0]))
 
 
@@ -41,7 +41,7 @@ fname = 'dataset.npz'
 if __name__ == '__main__':
     samples = dict(D=[], R=[])
     try:
-        pbar = tqdm(total=batch_size)
+        pbar = tqdm(total=batch_size, leave=False)
         i = 0
         while True:
             D = np.random.random_sample(n_grating_layers)
@@ -54,14 +54,16 @@ if __name__ == '__main__':
             samples['R'].append(np.abs(ts[:, 0, 0]) ** 2)
             if i == batch_size:
                 save_samples(fname, samples)
-                del samples
-                gc.collect()
                 samples = dict(D=[], R=[])
+                gc.collect()
                 pbar.reset()
                 i = 0
     except KeyboardInterrupt:
-        pass
+        print('Interrupting calculation...')
+        answer = input('Do you want to save calculated data? y/[n]: ')
+        if answer == 'y':
+            save_samples(fname, samples)
     finally:
         pbar.close()
-        save_samples(fname, samples)
-        del samples
+        print('Exiting script')
+        exit(0)

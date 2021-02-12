@@ -24,9 +24,9 @@ epsilon_SiO2 = 2.085136
 def save_samples(fname, samples):
     n_samples = len(samples['R'])
     if os.path.exists(fname):
-        existing = np.load(fname)
-        for k in samples.keys():
-            samples[k] = np.vstack((existing[k], samples[k]))
+        with np.load(fname) as existing:
+            for k in samples.keys():
+                samples[k] = np.vstack((existing[k], samples[k]))
     try:
         np.savez(fname, **samples)
     except KeyboardInterrupt:

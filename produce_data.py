@@ -32,7 +32,7 @@ def save_samples(fname, samples):
     except KeyboardInterrupt:
         pass
     print("Saved {0} samples to {1}. The dataset contains {2} samples."
-          .format(n_samples, fname, samples['R'].shape[0]))
+          .format(n_samples, fname, len(samples['R'])))
 
 
 fname = 'dataset.npz'

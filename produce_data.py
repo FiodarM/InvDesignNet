@@ -1,13 +1,7 @@
 import gc
 
 import numpy as np
-import pyximport
-pyximport.install(
-    setup_args={'include_dirs': np.get_include()},
-    language_level=3,
-    reload_support=True
-)
-from grating import Grating, operator_t
+from grating import Grating
 import os
 from tqdm import tqdm
 
@@ -46,12 +40,11 @@ if __name__ == '__main__':
             while True:
                 D = np.random.random_sample(n_grating_layers)
                 gr = Grating(epsilon_Si, epsilon_SiO2, D)
-                ps = gr.propagator(freqs)
-                ts = np.array(list(map(operator_t, ps)))
+                R = gr.transmittivity(freqs)
                 i += 1
                 pbar.update(1)
                 samples['D'].append(D)
-                samples['R'].append(np.abs(ts[:, 0, 0]) ** 2)
+                samples['R'].append(R)
                 if i == batch_size:
                     save_samples(fname, samples)
                     samples = dict(D=[], R=[])

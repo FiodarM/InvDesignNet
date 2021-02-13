@@ -131,18 +131,3 @@ cpdef operator_t(propagator, eps_left=1, eps_right=None, b=0):
     return 2 * spla.inv((np.bmat([gamma_left, I]).
                 dot(spla.inv(propagator)).
                 dot(np.bmat([I, gamma_right]).T))).dot(gamma_left)
-
-
-class Grating(object):
-    def __init__(self, eps1, eps2, widths):
-        self.eps1 = eps1
-        self.eps2 = eps2
-        self.widths = widths
-
-    def props_layers(self, f, b=0):
-        for i, d in enumerate(self.widths):
-            eps = self.eps1 if i % 2 == 0 else self.eps2
-            yield propagator_layer(f, eps, d, b)
-
-    def propagator(self, f, b=0):
-        return propagator_grating(f, self.eps1, self.eps2, self.widths, b)

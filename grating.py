@@ -10,11 +10,21 @@ pyximport.install(
 from cy_funcs import *
 
 
+class Layer(object):
+    def __init__(self, eps, width):
+        self.eps = eps
+        self.width = width
+
+
 class Grating(object):
     def __init__(self, eps1, eps2, widths):
         self.eps1 = eps1
         self.eps2 = eps2
         self.widths = widths
+        self.layers = []
+        for i, d in enumerate(widths):
+            eps = self.eps1 if i % 2 == 0 else self.eps2
+            self.layers.append(Layer(eps, d))
 
     def props_layers(self, f, b=0):
         for i, d in enumerate(self.widths):

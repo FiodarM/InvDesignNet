@@ -53,7 +53,7 @@ class Grating(object):
         # height = sum(l.width for l in self.layers)
         xmin = 0
         for i, l in enumerate(self.layers):
-            plt.axvspan(xmin, xmin + l.width, color=colors[i % 2])
+            ax.axvspan(xmin, xmin + l.width, color=colors[i % 2])
             xmin += l.width
         ax.set_ylim(0, len(self.layers) / 2)
         ax.set_yticks([])

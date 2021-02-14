@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 import pyximport
@@ -45,3 +46,16 @@ class Grating(object):
             return np.abs(op_t[:, 0, 1]) ** 2
         if pol == 'yx':
             return np.abs(op_t[:, 1, 0]) ** 2
+
+    def plot(self, ax=None, colors=('burlywood', 'lightblue')):
+        if ax is None:
+            fig, ax = plt.subplots()
+        # height = sum(l.width for l in self.layers)
+        xmin = 0
+        for i, l in enumerate(self.layers):
+            plt.axvspan(xmin, xmin + l.width, color=colors[i % 2])
+            xmin += l.width
+        ax.set_ylim(0, len(self.layers) / 2)
+        ax.set_yticks([])
+        ax.set_aspect('equal')
+        return ax

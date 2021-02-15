@@ -213,7 +213,6 @@ dmypy.json
 cython_debug/
 
 # These are too large
-dataset.npz
 dataset_snapshots
 
 # ppt temp files

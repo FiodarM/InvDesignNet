@@ -1,4 +1,7 @@
-numpy~=1.19.5
-tqdm~=4.56.1
-matplotlib~=3.3.4
-cython~=0.29.21
+tensorflow>=2.3
+numpy>=1.19.5
+tqdm
+matplotlib
+cython
+jupyter
+scikit-learn

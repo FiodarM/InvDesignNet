@@ -1,6 +1,7 @@
 Neural Network for Inverse Design in Nanophotonics
 ==================================================
 This project demonstates training a neural network for inverse design of nanophotonic gratings.
+The project is inspired by the [work](https://doi.org/10.1021/acsphotonics.7b01377) of Liu et al. in ACS Photonics journal.
 
 Generating dataset
 ------------------

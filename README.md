@@ -1,11 +1,11 @@
 Neural Network for Inverse Design in Nanophotonics
 ==================================================
-This project demonstates training neural networks for inverse design of nanophotonic gratings.
+This project demonstates training a neural network for inverse design of nanophotonic gratings.
 
 Generating dataset
 ------------------
-* Prior to training networks you have to generate the dataset.
-* To generate the dataset you can run `produce_data.py` script or `produce_data.ipynb` Jupyter notebook.
+* The pre-generated is stored in dataset.npz file.
+* In case you wish to append samples to the dataset or regenerate the dataset by yourself you can run either `produce_data.py` python script or `produce_data.ipynb` Jupyter notebook.
 
 Forward Model
 -------------

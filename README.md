@@ -15,4 +15,4 @@ Forward Model
 Inverese Model
 --------------
 * See `inverse_model.ipynb` Jupyter notebook for loading, training, and saving forward model
-* Saved inverse model states can be found in `forward_model` folder.
+* Saved inverse model states can be found in `inverse_model` folder.
